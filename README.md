@@ -15,3 +15,4 @@
 Personal standards influenced by a handful of Python PEPs, most notably:
  - PEP 8
  - PEP 257
+ - PEP 3107
