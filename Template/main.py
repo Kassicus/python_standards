@@ -57,7 +57,7 @@ class Game:
         self.clock = pygame.time.Clock()
         lib.events = pygame.event.get() # initializing the lib.events list (NONE at start)
 
-        #self.debug_interface = debug.DebugInterface()
+        self.debug_interface = debug.DebugInterface()
 
     def run(self):
         """
@@ -100,6 +100,8 @@ class Game:
                     self.running = False
                 if event.key == pygame.K_q:
                     self.running = False
+                if event.key == pygame.K_TAB:
+                    self.debug_interface.toggle_active()
 
     def multi_events(self):
         """
@@ -127,8 +129,8 @@ class Game:
 
         self.screen.fill(lib.color.BLACK)
 
-        #if self.debug_interface.active:
-            #self.debug_interface.draw(self.screen)
+        if self.debug_interface.active:
+            self.debug_interface.draw()
 
     def update(self):
         """
@@ -141,7 +143,7 @@ class Game:
         None
         """
 
-        #self.debug_interface.update()
+        self.debug_interface.update(self.clock)
         pygame.display.update()
         lib.delta_time = self.clock.tick(lib.framerate) / 1000
 
